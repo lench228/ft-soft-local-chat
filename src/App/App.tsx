@@ -1,31 +1,15 @@
-import { useState } from 'react'
-
-import './App.css'
+import { Providers } from "app/providers";
+import { AppRouter } from "app/routers";
+import { RouterProvider } from "react-router-dom";
+import { useEffect } from "react";
 
 function App() {
-  const [count, setCount] = useState(0);
-  const a =  new BroadcastChannel('chat');
-  a.postMessage('bebra')
-    a.onmessage = function(e) {
-        console.log(e.data)
-    }
+  useEffect(() => {}, []);
   return (
-    <>
-
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Providers>
+      <RouterProvider router={AppRouter}></RouterProvider>
+    </Providers>
+  );
 }
 
-export default App
+export default App;
