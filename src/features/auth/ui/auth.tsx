@@ -4,6 +4,7 @@ import { addUser } from "entities/user/model";
 import { v4 as uuidv4 } from "uuid";
 import { loginUser } from "features/auth/model";
 import { UsePageReload } from "app/layout/lib";
+import { Button } from "shared/ui/button/ui/button";
 
 export const Auth = () => {
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ export const Auth = () => {
       <fieldset className="w-full">
         <input id="name" name={"name"} />
       </fieldset>
-      <button type="submit">Регистрация</button>
+      <Button type="submit">Регистрация</Button>
     </form>
   );
 };

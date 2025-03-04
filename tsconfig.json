@@ -4,9 +4,10 @@
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": false,
-    "skipLibCheck": false,
-    "esModuleInterop": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
@@ -15,6 +16,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+
     "baseUrl": ".",
     "paths": {
       "features/*": ["src/features/*"],

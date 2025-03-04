@@ -1,4 +1,33 @@
-@import "tailwindcss";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer base {
+    @font-face {
+        font-family: 'Golos Text';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('./shared/assets/fonts/GolosText-Regular.ttf') format("truetype");
+    }
+    @font-face {
+        font-family: 'Golos Text Medium';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url('./shared/assets/fonts/GolosText-Medium.ttf') format("truetype");
+    }
+    @font-face {
+        font-family: 'Golos Text Bold';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url('./shared/assets/fonts/GolosText-Bold.ttf') format("truetype");
+    }
+    @font-face {
+        font-family: 'Golos Text ExtraBold';
+        font-style: normal;
+        font-weight: 800;
+        font-display: swap;
+        src: url('./shared/assets/fonts/GolosText-ExtraBold.ttf') format("truetype");
+    }
+}
