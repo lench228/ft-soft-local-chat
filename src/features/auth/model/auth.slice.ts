@@ -1,73 +1,41 @@
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { iPendingProps } from "shared/types";
+import { User } from "entities/user/model/user.slice";
 
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import { v4 as uuidv4 } from 'uuid';
-import {iPendingProps} from "../../../shared/types";
+interface iAuthSlice extends iPendingProps {
+  isAuthenticated: boolean;
 
-interface iAuthSlice extends  iPendingProps{
-    user: {
-        name: string,
-        id:string,
-    }
-    isAuthenticated: boolean;
+  user: User;
 }
 
 const initialState: iAuthSlice = {
-    user: {
-        name: '',
-        id:'',
-    },
-    isAuthenticated: false,
-    isLoading:false,
-    error:''
-}
+  isAuthenticated: false,
+  user: { id: "0", name: "0" },
 
-const loadState = (): iAuthSlice => {
-    try{
-    const serializedState = sessionStorage.getItem("authState");
-    if (serializedState === null) {
-        return initialState;
-    }
-    return JSON.parse(serializedState)}
- catch
-{
-    return initialState;
-}}
-
-const saveState = (state: iAuthSlice) => {
-    try {
-        const serializedState = JSON.stringify(state);
-        sessionStorage.setItem("authState", serializedState);
-    } catch (err) {
-        console.error(err);
-    }
+  isLoading: false,
+  error: "",
 };
 
-export  const AuthSlice = createSlice({
-    name:'Auth',
-    initialState: loadState(),
-    reducers:{
-        regUser: (store, action: PayloadAction<string>) => {
-            store.user = {name: action.payload,id: uuidv4()};
-            store.isAuthenticated = true;
-
-            localStorage.setItem(action.payload, store.user.id)
-            saveState(store);
-        },
-        loginUser: (store, action: PayloadAction<{ name: string, id: string }>) => {
-            store.user = {name:action.payload.name, id: action.payload.id};
-            store.isAuthenticated = true;
-            saveState(store);
-        }
+const AuthSlice = createSlice({
+  name: "Auth",
+  initialState,
+  reducers: {
+    loginUser: (state, action: PayloadAction<User>) => {
+      state.isAuthenticated = true;
+      state.user = action.payload;
     },
-    selectors:{
-        selectIsAuth: (state)  => state.isAuthenticated,
-        selectIsLoading: (state) => state.isLoading,
-        selectUser: (state) => state.user
-    }
+    logoutUser: (state, action: PayloadAction<User>) => {
+      state.isAuthenticated = false;
+      state.user = action.payload;
+    },
+  },
+  selectors: {
+    selectIsAuth: (state) => state.isAuthenticated,
+    selectUser: (state) => state.user,
+  },
+});
 
-})
-
-export const {selectUser, selectIsLoading, selectIsAuth} = AuthSlice.selectors;
-export const {regUser, loginUser} = AuthSlice.actions;
+export const { selectIsAuth, selectUser } = AuthSlice.selectors;
+export const { loginUser, logoutUser } = AuthSlice.actions;
 
 export default AuthSlice;

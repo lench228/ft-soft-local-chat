@@ -22,7 +22,7 @@ iChat:
     messages: iMessage[],
 ]
 
-в localStorage - chatId: messages, чтобы не хранить все чаты в 1 key-value
+в localStorage - chatId: messages, чтобы не хранить все чаты в 1 key-destinationName
 
 ```
 То есть, так как приложение будет использоваться исключительно в рамках 

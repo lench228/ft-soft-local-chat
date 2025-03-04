@@ -1,5 +1,5 @@
-export const ROUTES =  {
-    home: "",
-    auth: "auth",
-    chat: ":id",
+export const ROUTES = {
+  home: "",
+  auth: "auth",
+  chat: "chat/:id",
 };

@@ -1,4 +1,7 @@
 export {
-selectIsLoading,selectIsAuth, selectUser, loginUser, regUser
- , default as AuthReducer}  from './auth.slice'
-
+  logoutUser,
+  selectIsAuth,
+  loginUser,
+  selectUser,
+  default as AuthReducer,
+} from "./auth.slice";

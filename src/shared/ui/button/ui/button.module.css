@@ -1,0 +1,3 @@
+.button{
+    @apply flex text-xl bg-red;
+}
