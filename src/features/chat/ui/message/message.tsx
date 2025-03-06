@@ -1,8 +1,8 @@
-import React, { FormEvent, useEffect, useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { Button } from "shared/ui/button/ui/button";
 import { v4 as uuidv4 } from "uuid";
 import { saveBlobToLocalStorage } from "shared/lib/utils";
-import { addMessage, iMessageAction } from "features/chat/model/chat.slice";
+import { addMessage, iMessageAction } from "entities/chat/model/chat.slice";
 import UseBroadcast from "shared/hooks/use-broadcast";
 import { useDispatch } from "react-redux";
 

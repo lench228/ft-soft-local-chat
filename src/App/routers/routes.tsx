@@ -1,15 +1,17 @@
+import { lazy } from "react";
 import { PrivateRoute } from "shared/private-route";
-import { Auth } from "features/auth";
-import { HomePage } from "pages/home";
-import iRoute from "app/routers/lib/types";
 
+import iRoute from "app/routers/lib/types";
 import { ROUTES } from "shared/lib";
-import { ChatPage } from "pages/chat";
+
+const ChatPage = lazy(() => import("pages/chat"));
+const HomePage = lazy(() => import("pages/home"));
+const AuthPage = lazy(() => import("pages/ auth"));
 
 export const PublicRoutes: iRoute[] = [
   {
     path: `${ROUTES.auth}`,
-    element: <PrivateRoute onlyUnAuth={false} children={<Auth />} />,
+    element: <PrivateRoute onlyUnAuth={false} children={<AuthPage />} />,
   },
 ];
 

@@ -1,7 +1,6 @@
 import React, { ButtonHTMLAttributes } from "react";
 
 import classes from "./button.module.css";
-import clsx from "clsx";
 
 interface iButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
@@ -12,9 +11,10 @@ export const Button = (props: iButton) => {
 
   return (
     <button
-      className={clsx(classes.button, "text-3xl font-regular")}
+      className={classes.button}
       onClick={onClick}
       type={rest.type}
+      disabled={props.disabled}
     >
       {children}
     </button>

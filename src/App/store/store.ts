@@ -2,9 +2,9 @@ import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import storageSession from "redux-persist/lib/storage/session";
 import { persistStore, persistReducer } from "redux-persist";
-import AuthSlice from "features/auth/model/auth.slice";
+import AuthSlice from "entities/auth/model/auth.slice";
 import UsersSlice from "entities/user/model/user.slice";
-import ChatSlice from "features/chat/model/chat.slice";
+import ChatSlice from "entities/chat/model/chat.slice";
 
 const authPersistConfig = {
   key: "auth",

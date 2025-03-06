@@ -1,0 +1,12 @@
+.container{
+    @apply my-auto ml-14 max-w-[700px] flex flex-col gap-16;
+    @apply py-4 px-10;
+    @apply bg-bg rounded-lg;
+
+    @apply  shadow-main/50 shadow-2xl;
+}
+
+.title{
+    @apply font-bold text-6xl;
+    @apply text-balance;
+}

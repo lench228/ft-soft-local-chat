@@ -1,6 +1,10 @@
-import { Outlet, useOutletContext } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import UseBroadcast from "shared/hooks/use-broadcast";
 import { ContextType } from "app/layout/lib";
+
+import classes from "./layout.module.css";
+import { Suspense } from "react";
+import { Preloader } from "shared/ui/preloader";
 
 const Layout = () => {
   // Вообще ужасное решение, мне не нравится, но иначе я не смогу синхронить стейт
@@ -22,8 +26,10 @@ const Layout = () => {
   });
 
   return (
-    <div>
-      <Outlet context={{ reloadDistPage } satisfies ContextType} />
+    <div className={classes.container}>
+      <Suspense fallback={<Preloader />}>
+        <Outlet context={{ reloadDistPage } satisfies ContextType} />
+      </Suspense>
     </div>
   );
 };

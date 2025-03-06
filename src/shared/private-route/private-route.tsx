@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { ROUTES } from "shared/lib";
 
-import { selectIsAuth } from "features/auth/model";
+import { selectIsAuth } from "entities/auth/model";
 
 type ProtectedRouteProps = {
   onlyUnAuth?: boolean;

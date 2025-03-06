@@ -7,14 +7,12 @@ import { Button } from "shared/ui/button/ui/button";
 import { v4 as uuidv4 } from "uuid";
 import {
   createChat,
-  createProps,
   selectChats,
   selectError,
   setError,
-} from "features/chat/model/chat.slice";
-import UseBroadcast from "shared/hooks/use-broadcast";
+} from "entities/chat/model/chat.slice";
 
-import { selectUser } from "features/auth/model";
+import { selectUser } from "entities/auth/model";
 import { selectUsers } from "entities/user/model";
 import { User } from "entities/user/model/user.slice";
 import { UsePageReload } from "app/layout/lib";

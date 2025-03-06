@@ -1,3 +1,3 @@
-export {Auth} from './ui'
+export { Auth } from "./ui";
 
-export {AuthReducer} from './model'
+export { AuthReducer } from "../../entities/auth/model";

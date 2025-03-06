@@ -31,3 +31,7 @@
         src: url('./shared/assets/fonts/GolosText-ExtraBold.ttf') format("truetype");
     }
 }
+
+body{
+    @apply font-regular;
+}

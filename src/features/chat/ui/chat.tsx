@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { loadBlobFromLocalStorage } from "shared/lib/utils";
-import { iChat } from "features/chat/model/chat.slice";
+import { iChat } from "entities/chat/model/chat.slice";
 
 interface ChatMessage {
   message: string;

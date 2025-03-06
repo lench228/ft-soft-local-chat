@@ -1,10 +1,15 @@
 import { FormEvent } from "react";
 import { useDispatch } from "react-redux";
-import { addUser } from "entities/user/model";
+import classes from "./auth.module.css";
 import { v4 as uuidv4 } from "uuid";
-import { loginUser } from "features/auth/model";
+
+import { addUser } from "entities/user/model";
+import { loginUser } from "entities/auth/model";
+
 import { UsePageReload } from "app/layout/lib";
+
 import { Button } from "shared/ui/button/ui/button";
+import { Input } from "shared/ui/input";
 
 export const Auth = () => {
   const dispatch = useDispatch();
@@ -13,7 +18,7 @@ export const Auth = () => {
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const name = String(new FormData(e.currentTarget).get("name"));
+    const name = String(new FormData(e.currentTarget).get("username"));
     if (name) {
       const user = { name: name, id: uuidv4() };
 
@@ -26,13 +31,18 @@ export const Auth = () => {
     }
   };
   return (
-    <form
-      className="w-full h-full bg-blue-500"
-      onSubmit={(e) => handleFormSubmit(e)}
-    >
-      Зарегайся братуха
-      <fieldset className="w-full">
-        <input id="name" name={"name"} />
+    <form className={classes.container} onSubmit={(e) => handleFormSubmit(e)}>
+      <h1 className={classes.title}>
+        добро <br />
+        пожаловать
+      </h1>
+      <fieldset>
+        <Input
+          label={"ваше имя"}
+          placeholder={"Иван"}
+          id={"username"}
+          name={"username"}
+        />
       </fieldset>
       <Button type="submit">Регистрация</Button>
     </form>

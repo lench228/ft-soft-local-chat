@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectChats } from "features/chat/model/chat.slice";
-import { selectUser } from "features/auth/model";
+
+import { selectChats } from "entities/chat/model/chat.slice";
+import { selectUser } from "entities/auth/model";
 
 import { Header } from "features/chat/ui/header/header";
 import { Chat } from "features/chat/ui";
