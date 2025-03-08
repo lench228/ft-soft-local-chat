@@ -9,19 +9,23 @@ import { Header } from "features/chat/ui/header/header";
 import { Chat } from "features/chat/ui";
 import { Message } from "features/chat/ui/message/message";
 
-export const ChatPage = () => {
-  const location = useLocation();
+interface iChatPage {
+  chatId: string;
+}
+
+export const ChatPage = (props: iChatPage) => {
   const navigate = useNavigate();
   const userMe = useSelector(selectUser);
-
-  const chatId = location.pathname.split("/")[2];
   const chats = useSelector(selectChats);
+
+  const { chatId } = { ...props };
   const chat = chats[chatId];
 
   // Обновление страницы не дает persist обновлять адекватно данные
   // Сомневаюсь что так должно быть, но пока осталю так
 
   useEffect(() => {
+    console.log(chat);
     if (!chatId || !chat) {
       navigate("/");
     }
@@ -31,7 +35,9 @@ export const ChatPage = () => {
 
   if (chat && toName)
     return (
-      <section className={"flex justify-between flex-col h-full"}>
+      <section
+        className={"flex justify-between flex-col h-full bg-transparent"}
+      >
         <Header name={toName} />
         <Chat {...chat} />
         <Message userMe={userMe.name} toName={toName} chatId={chatId} />

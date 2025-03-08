@@ -1,0 +1,7 @@
+.text{
+    @apply text-4xl font-bold;
+}
+
+.username{
+    @apply text-accent;
+}

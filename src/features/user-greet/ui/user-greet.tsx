@@ -1,7 +1,22 @@
 import React from "react";
+import classes from "./user-greet.module.css";
 
-const UserGreet = () => {
-  return <div></div>;
+interface iUserGreet {
+  userName: string;
+}
+
+const UserGreet = (props: iUserGreet) => {
+  const { userName } = { ...props };
+  return (
+    <p className={classes.text}>
+      Привет, <br />
+      <span className={classes.username}>
+        {" "}
+        {userName ? userName : "ОШИБКА"}
+      </span>
+      !
+    </p>
+  );
 };
 
 export { UserGreet };

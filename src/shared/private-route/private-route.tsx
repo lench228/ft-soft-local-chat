@@ -13,7 +13,7 @@ type ProtectedRouteProps = {
   children: React.ReactElement;
 };
 
-export const PrivateRoute = ({ onlyUnAuth, children }: ProtectedRouteProps) => {
+const PrivateRoute = ({ onlyUnAuth, children }: ProtectedRouteProps) => {
   const isAuthenticated = useSelector(selectIsAuth);
   const location = useLocation();
 
@@ -27,3 +27,5 @@ export const PrivateRoute = ({ onlyUnAuth, children }: ProtectedRouteProps) => {
 
   return children;
 };
+
+export { PrivateRoute };

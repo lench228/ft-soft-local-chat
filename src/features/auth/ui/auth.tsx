@@ -38,13 +38,16 @@ export const Auth = () => {
       </h1>
       <fieldset>
         <Input
+          sizeType={"default"}
           label={"ваше имя"}
           placeholder={"Иван"}
           id={"username"}
           name={"username"}
         />
       </fieldset>
-      <Button type="submit">Регистрация</Button>
+      <Button sizeType={"default"} type="submit">
+        Регистрация
+      </Button>
     </form>
   );
 };

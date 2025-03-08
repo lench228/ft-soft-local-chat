@@ -59,7 +59,11 @@ export const Chat = (chat: iChat) => {
   }, [chat, blobLoadingStates]);
 
   return (
-    <main className={"w-full h-full flex items-center justify-center m-auto"}>
+    <main
+      className={
+        "w-full h-full flex items-center justify-center m-auto bg-none"
+      }
+    >
       {chat.messages.length ? (
         <ul>
           {chat.messages.map((message: ChatMessage, index) => {

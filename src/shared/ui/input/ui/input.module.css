@@ -2,15 +2,11 @@
     @apply w-full flex flex-col max-w-[580px];
 }
 
-.label{
-    @apply text-3xl mb-3;
-}
-
 .input{
-    @apply bg-transparent text-4xl font-regular;
+    @apply bg-transparent font-regular;
     @apply border-2 border-additional rounded-lg;
     @apply text-main;
-    @apply px-3 py-5;
+
     &::placeholder{
         @apply text-additional;
     }
@@ -18,4 +14,23 @@
         @apply outline-accent-2;
     }
 }
+
+.small > .label{
+    @apply text-xl mb-0;
+}
+
+.small > .input{
+    @apply text-lg;
+    @apply px-1 py-2;
+}
+
+.default > .label{
+    @apply text-3xl mb-3;
+}
+
+.default > .input{
+    @apply text-4xl;
+    @apply px-3 py-5;
+}
+
 

@@ -1,8 +1,7 @@
 .button{
-    @apply py-4 w-full ;
-    @apply   rounded-xl border-4 border-accent;
+    @apply rounded-xl border-accent;
     @apply bg-accent;
-    @apply text-bg text-2xl font-bold;
+    @apply text-bg  font-bold;
 
     &:hover{
         @apply transition-colors duration-150 ease-in-out;
@@ -11,4 +10,14 @@
         @apply border-accent;
 
     }
+}
+
+.default{
+    @apply w-full text-2xl;
+    @apply border-4 py-4 ;
+}
+
+.small{
+    @apply p-2 border-2 text-lg;
+    @apply h-fit;
 }
