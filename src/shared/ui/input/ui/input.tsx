@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { TSize } from "shared/ui/types";
 
 interface iInput extends InputHTMLAttributes<HTMLInputElement> {
-  label: string;
+  label?: string;
   sizeType: TSize;
 }
 

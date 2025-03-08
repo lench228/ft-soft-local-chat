@@ -1,0 +1,33 @@
+.container{
+    @apply flex justify-between items-center ;
+    @apply py-2 px-7;
+    @apply bg-bg;
+
+    @apply transition-colors duration-200 ease-in-out;
+    &:hover{
+        @apply bg-accent/30;
+    }
+}
+
+.me{
+    @apply bg-bg-darker;
+
+    @apply ml-auto;
+}
+
+.content{
+    @apply flex flex-col py-1;
+}
+
+.username{
+    @apply font-medium;
+}
+.message{
+    @apply text-accent-2 ;
+}
+.me > .content {
+    @apply mt-auto;
+}
+.time{
+    @apply self-start text-additional text-xs;
+}

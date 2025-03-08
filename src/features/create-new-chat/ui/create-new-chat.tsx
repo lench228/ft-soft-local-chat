@@ -23,6 +23,8 @@ const CreateNewChat = () => {
   const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    dispatch(setError(""));
+
     if (!destinationName) {
       dispatch(setError("Пользователь не найден"));
       return;
@@ -52,7 +54,7 @@ const CreateNewChat = () => {
     }
 
     if (existingChat) {
-      dispatch(setError("Такой диалог уже есть"));
+      dispatch(setCurrentChat(existingChat[0]));
     } else if (user) {
       const chatId = uuidv4();
       dispatch(
@@ -70,22 +72,28 @@ const CreateNewChat = () => {
     }
   };
 
+  useEffect(() => {
+    return () => {
+      dispatch(setError(""));
+    };
+  }, []);
+
   return (
     <form
-      className={"flex items-end gap-2"}
+      className={"flex items-end gap-2 flex-wrap max-w-[276px]"}
       onSubmit={(e) => handleFormSubmit(e)}
     >
       <Input
-        label={"Начать чат с..."}
         sizeType={"small"}
         placeholder={"Кому хотим написать?"}
         value={destinationName}
         onChange={(e) => setDestinationName(e.target.value)}
       />
       <Button sizeType={"small"} disabled={!destinationName} type={"submit"}>
-        +
+        Добавить или найти
       </Button>
-      {error && <p>{error}</p>}
+
+      {error && <p className={"font-bold text-lg  animate-pulse"}>{error} !</p>}
     </form>
   );
 };

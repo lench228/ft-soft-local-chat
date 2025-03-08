@@ -18,7 +18,7 @@ export default {
         "accent-2": "#86428A",
         bg: "#FCFCFC",
         "bg-darker": "#D9D9D9",
-        "accent-3": "00D29D",
+        "accent-3": "#00D29D",
       },
       fontFamily: {
         regular: ["Golos Text", "sans-serif"],

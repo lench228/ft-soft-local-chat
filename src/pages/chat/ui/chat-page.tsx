@@ -36,7 +36,7 @@ export const ChatPage = (props: iChatPage) => {
   if (chat && toName)
     return (
       <section
-        className={"flex justify-between flex-col h-full bg-transparent"}
+        className={"flex justify-between flex-col h-full w-full bg-transparent"}
       >
         <Header name={toName} />
         <Chat {...chat} />

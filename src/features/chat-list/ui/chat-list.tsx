@@ -1,22 +1,39 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { selectChats } from "entities/chat";
+import { Item } from "features/chat-list/ui/item";
+import { selectUser } from "entities/auth";
 
 const ChatList = () => {
   const chats = useSelector(selectChats);
-  if (chats === null) {
-    return <div>Пусто</div>;
+  const currentUser = useSelector(selectUser);
+
+  const userChats = Object.entries(chats).filter(([, chat]) =>
+    chat.users.some((user) => user === currentUser.name),
+  );
+
+  if (userChats.length === 0) {
+    return <div>Нету</div>;
   }
+
   return (
-    <ul>
-      {Object.entries(chats).map(([key, values]) => {
-        return (
-          <li key={key}>
-            {values.users.map((chatInf) => (
-              <p>{chatInf}</p>
-            ))}
-          </li>
-        );
+    <ul className="m-[-20px] max-w-[300px]">
+      {userChats.map(([chatId, chat]) => {
+        if (chat.messages.length > 0) {
+          const lastMessage = chat.messages[chat.messages.length - 1];
+          return (
+            <li key={chatId}>
+              <Item
+                lastMessage={lastMessage.message}
+                user={lastMessage.author}
+                date={lastMessage.date}
+                chatId={chatId}
+                isMe={lastMessage.author === currentUser.name}
+              />
+            </li>
+          );
+        }
+        return null;
       })}
     </ul>
   );

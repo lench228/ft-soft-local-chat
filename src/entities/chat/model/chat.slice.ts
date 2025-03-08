@@ -1,7 +1,8 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { iPendingProps } from "shared/types";
 
 import { saveBlobToLocalStorage } from "shared/lib/utils";
+import { RootState } from "app/store/store";
 
 export type createProps = {
   userName: string;

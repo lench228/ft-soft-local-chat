@@ -30,7 +30,9 @@ export const HomePage = () => {
 
   return (
     <div className={classes.container}>
-      <section className={"bg-bg"}>
+      <section
+        className={"bg-bg-darker min-w-[300px]  flex flex-col gap-7 p-5"}
+      >
         <UserGreet userName={user.name} />
         <CreateNewChat />
         <ChatList></ChatList>
