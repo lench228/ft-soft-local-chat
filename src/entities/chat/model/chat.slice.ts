@@ -20,14 +20,12 @@ interface iMessage {
   date: string;
   replyed?: iMessage;
   message: string;
-  blob?: Blob;
+  isBlob?: boolean;
 }
 
 export interface iMessageAction {
   message: iMessage;
-  blob?: Blob;
   id: string;
-  isBlob?: boolean;
 }
 
 interface iChatSlice extends iPendingProps {
@@ -59,21 +57,10 @@ export const ChatSlice = createSlice({
       }
     },
     addMessage: (state, action: PayloadAction<iMessageAction>) => {
-      const { id, message, blob } = action.payload;
+      const { id, message } = action.payload;
 
       if (state.chats && state.chats[id]) {
-        if (blob) {
-          const blobKey = `blob-${Date.now()}-${Math.random()}`;
-          saveBlobToLocalStorage(blob, blobKey).then((savedKey) => {
-            const updatedMessage: iMessage = {
-              ...message,
-              message: String(savedKey),
-            };
-            state.chats[id].messages.push(updatedMessage);
-          });
-        } else {
-          state.chats[id].messages.push(message);
-        }
+        state.chats[id].messages.push(message);
       }
     },
     setError: (store, action: PayloadAction<string>) => {

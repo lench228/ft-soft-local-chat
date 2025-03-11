@@ -19,7 +19,6 @@ const Layout = () => {
     name: "broadCast",
     action: (payload) => {
       if (payload) {
-        console.log(payload);
         window.location.reload();
       }
     },

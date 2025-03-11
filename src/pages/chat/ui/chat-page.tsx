@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { selectChats } from "entities/chat/model/chat.slice";
 import { selectUser } from "entities/auth/model";
 
-import { Header } from "features/chat/ui/header/header";
+import { Header } from "features/header";
 import { Chat } from "features/chat/ui";
-import { Message } from "features/chat/ui/message/message";
+import { Message } from "features/send-message/message";
 
 interface iChatPage {
   chatId: string;
@@ -25,7 +25,6 @@ export const ChatPage = (props: iChatPage) => {
   // Сомневаюсь что так должно быть, но пока осталю так
 
   useEffect(() => {
-    console.log(chat);
     if (!chatId || !chat) {
       navigate("/");
     }
@@ -39,7 +38,7 @@ export const ChatPage = (props: iChatPage) => {
         className={"flex justify-between flex-col h-full w-full bg-transparent"}
       >
         <Header name={toName} />
-        <Chat {...chat} />
+        <Chat {...chat} user={userMe} />
         <Message userMe={userMe.name} toName={toName} chatId={chatId} />
       </section>
     );

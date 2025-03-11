@@ -33,5 +33,6 @@
 }
 
 body{
-    @apply font-regular w-screen h-screen ;
+    @apply font-regular w-full h-full ;
 }
+

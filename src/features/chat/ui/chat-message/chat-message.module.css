@@ -1,0 +1,23 @@
+.container {
+    @apply flex items-center gap-2;
+    @apply w-auto;
+    @apply max-w-[400px];
+}
+
+.me > .content {
+    @apply bg-bg;
+}
+
+.content {
+    @apply flex flex-col px-3 py-1 justify-between;
+    @apply w-auto;
+    @apply max-w-[80%];
+    @apply rounded-3xl;
+    @apply bg-bg-darker;
+    @apply break-words;
+}
+
+
+.footer {
+    @apply text-[10px] self-end;
+}

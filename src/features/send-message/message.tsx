@@ -5,6 +5,7 @@ import { saveBlobToLocalStorage } from "shared/lib/utils";
 import { addMessage, iMessageAction } from "entities/chat/model/chat.slice";
 import UseBroadcast from "shared/hooks/use-broadcast";
 import { useDispatch } from "react-redux";
+import { Input } from "shared/ui/input";
 
 interface iMessage {
   userMe: string;
@@ -92,17 +93,19 @@ const Message = (props: iMessage) => {
 
   return (
     <form onSubmit={handleFormSubmit}>
-      <input
-        id={"message"}
+      <Input
+        sizeType={"small"}
+        id={"message" + ":" + userMe}
         name={"message"}
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         className={"bg-blue-500"}
         disabled={selectedFile != null || isFileUploading}
       />
-      <input
+      <Input
+        sizeType={"small"}
         type={"file"}
-        id={"fileInput"}
+        id={'fileInput + ":" + userMe'}
         onChange={handleFileChange}
         disabled={selectedFile != null || isFileUploading}
         className={"bg-blue-500"}
@@ -111,6 +114,7 @@ const Message = (props: iMessage) => {
       <Button
         type={"submit"}
         disabled={(!message && !selectedFile) || isFileUploading}
+        sizeType={"small"}
       >
         Отправить
       </Button>

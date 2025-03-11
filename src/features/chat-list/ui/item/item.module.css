@@ -1,33 +1,38 @@
-.container{
-    @apply flex justify-between items-center ;
+.container {
+    @apply flex justify-between items-center;
     @apply py-2 px-7;
     @apply bg-bg;
-
     @apply transition-colors duration-200 ease-in-out;
-    &:hover{
+
+    &:hover {
         @apply bg-accent/30;
     }
 }
 
-.me{
+.me {
     @apply bg-bg-darker;
-
     @apply ml-auto;
 }
 
-.content{
-    @apply flex flex-col py-1;
+.content {
+    @apply flex flex-col py-1 overflow-hidden mr-auto ml-2;
+    max-width: 120px;
 }
 
-.username{
+.username {
     @apply font-medium;
 }
-.message{
-    @apply text-accent-2 ;
+
+.message {
+    @apply text-accent-2;
+    @apply overflow-hidden whitespace-nowrap text-ellipsis;
+    max-width: 100%;
 }
+
 .me > .content {
     @apply mt-auto;
 }
-.time{
+
+.time {
     @apply self-start text-additional text-xs;
 }

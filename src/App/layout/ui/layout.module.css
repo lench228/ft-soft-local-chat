@@ -1,4 +1,4 @@
 .container{
-    @apply w-screen h-screen flex;
+    @apply w-full h-screen flex;
     background: radial-gradient(circle at right bottom, #DB394B, #DB394B 10%, #E4737F 50%, #86428A 100%);
 }

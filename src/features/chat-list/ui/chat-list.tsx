@@ -13,7 +13,7 @@ const ChatList = () => {
   );
 
   if (userChats.length === 0) {
-    return <div>Нету</div>;
+    return <div>Чатов нет(</div>;
   }
 
   return (
@@ -29,6 +29,7 @@ const ChatList = () => {
                 date={lastMessage.date}
                 chatId={chatId}
                 isMe={lastMessage.author === currentUser.name}
+                isBlob={lastMessage.isBlob}
               />
             </li>
           );

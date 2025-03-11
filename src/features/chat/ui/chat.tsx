@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { loadBlobFromLocalStorage } from "shared/lib/utils";
 import { iChat } from "entities/chat/model/chat.slice";
+import { ChatMessage } from "features/chat/ui/chat-message";
+import { User } from "entities/user/model/user.slice";
 
-interface ChatMessage {
+export interface iChatMessage {
   message: string;
   author: string;
   date: string;
@@ -15,10 +17,16 @@ interface BlobLoadingState {
   error: string | null;
 }
 
-export const Chat = (chat: iChat) => {
+interface iChatList extends iChat {
+  user: User;
+}
+
+export const Chat = ({ messages, user }: iChatList) => {
   const [blobLoadingStates, setBlobLoadingStates] = useState<
     Record<string, BlobLoadingState>
   >({});
+
+  const chatEndRef = useRef<HTMLDivElement>(null);
 
   const loadBlob = async (blobId: string) => {
     try {
@@ -45,8 +53,8 @@ export const Chat = (chat: iChat) => {
   };
 
   useEffect(() => {
-    if (chat) {
-      chat.messages.forEach((message: ChatMessage) => {
+    if (messages) {
+      messages.forEach((message: iChatMessage) => {
         if (message.isBlob && !blobLoadingStates[message.message]) {
           setBlobLoadingStates((prevState) => ({
             ...prevState,
@@ -56,47 +64,86 @@ export const Chat = (chat: iChat) => {
         }
       });
     }
-  }, [chat, blobLoadingStates]);
+  }, [messages, blobLoadingStates]);
+
+  useEffect(() => {
+    const scrollToBottom = () => {
+      if (chatEndRef.current) {
+        const container = chatEndRef.current;
+        if (container) {
+          setTimeout(() => {
+            container.scrollTop = container.scrollHeight;
+          }, 200); // Задержка 50 мс
+        }
+      }
+    };
+
+    scrollToBottom();
+  }, [messages]);
+
+  useEffect(() => {
+    return () => {
+      Object.values(blobLoadingStates).forEach((state) => {
+        if (state.url) {
+          URL.revokeObjectURL(state.url);
+        }
+      });
+    };
+  }, [blobLoadingStates]);
+
+  const renderMessage = (message: iChatMessage) => {
+    if (message.isBlob) {
+      const blobId = message.message;
+      const loadingState = blobLoadingStates[blobId];
+
+      if (loadingState?.isLoading) {
+        return (
+          <ChatMessage key={blobId} message={message} user={user}>
+            Загрузка изображения...
+          </ChatMessage>
+        );
+      } else if (loadingState?.error) {
+        return (
+          <ChatMessage key={blobId} message={message} user={user}>
+            Ошибка загрузки изображения: {loadingState.error}
+          </ChatMessage>
+        );
+      } else if (loadingState?.url) {
+        return (
+          <ChatMessage key={blobId} message={message} user={user}>
+            <img
+              width="200"
+              height="150"
+              src={loadingState.url}
+              alt="Изображение из Blob"
+              onError={() => console.error("Ошибка при загрузке изображения")}
+            />
+          </ChatMessage>
+        );
+      } else {
+        return (
+          <ChatMessage key={blobId} message={message} user={user}>
+            Неизвестная ошибка
+          </ChatMessage>
+        );
+      }
+    } else {
+      return (
+        <ChatMessage key={message.date} message={message} user={user}>
+          {message.message}
+        </ChatMessage>
+      );
+    }
+  };
 
   return (
-    <main className={"w-full h-full flex items-center justify-start  bg-none"}>
-      {chat.messages.length ? (
-        <ul>
-          {chat.messages.map((message: ChatMessage, index) => {
-            if (message.isBlob) {
-              const blobId = message.message;
-              const loadingState = blobLoadingStates[blobId];
-
-              if (loadingState?.isLoading) {
-                return <li key={index}>Загрузка изображения...</li>;
-              } else if (loadingState?.error) {
-                return (
-                  <li key={index}>
-                    Ошибка загрузки изображения: {loadingState.error}
-                  </li>
-                );
-              } else if (loadingState?.url) {
-                return (
-                  <li key={index}>
-                    <img
-                      width="200"
-                      height="150"
-                      src={loadingState.url}
-                      alt="Изображение из Blob"
-                      onLoad={() => URL.revokeObjectURL(loadingState.url!)}
-                      onError={() =>
-                        console.error("Ошибка при загрузке изображения")
-                      }
-                    />
-                  </li>
-                );
-              } else {
-                return <li key={index}>Неизвестная ошибка</li>;
-              }
-            } else {
-              return <li key={index}>{message.message}</li>;
-            }
-          })}
+    <main
+      ref={chatEndRef}
+      className="overflow-y-scroll w-full h-full flex justify-start bg-none p-14"
+    >
+      {messages && messages.length ? (
+        <ul className="flex flex-col gap-4">
+          {messages.map((message) => renderMessage(message))}
         </ul>
       ) : (
         <h2>Начните историю диалога!</h2>

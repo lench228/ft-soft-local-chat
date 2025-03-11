@@ -29,15 +29,17 @@ export const HomePage = () => {
   useEffect(() => {}, [chats]);
 
   return (
-    <div className={classes.container}>
+    <>
       <section
-        className={"bg-bg-darker min-w-[300px]  flex flex-col gap-7 p-5"}
+        className={
+          "bg-bg-darker min-w-[300px] border-r-2 border-additional flex flex-col gap-7 p-5"
+        }
       >
         <UserGreet userName={user.name} />
         <CreateNewChat />
         <ChatList></ChatList>
       </section>
       <ChatPage chatId={currentChat} />
-    </div>
+    </>
   );
 };
