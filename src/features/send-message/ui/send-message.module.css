@@ -1,0 +1,24 @@
+.container{
+    @apply flex justify-between items-center;
+
+    @apply mt-2;
+    @apply bg-bg-darker;
+}
+.upload {
+
+}
+.textarea{
+
+    @apply text-wrap text-xl text-main ;
+    @apply rounded-xl bg-transparent;
+    @apply outline-none;
+
+
+    resize: none;
+    flex-grow: 1;
+    height: 24px;
+    min-height: 20px;
+    max-height: 200px;
+    line-height: 1.5;
+    padding: 1px;
+}

@@ -13,7 +13,7 @@ const ChatList = () => {
   );
 
   if (userChats.length === 0) {
-    return <div>Чатов нет(</div>;
+    return <div className={"text-3xl font-bold text-main"}>Чатов нет(</div>;
   }
 
   return (

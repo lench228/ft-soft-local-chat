@@ -3,7 +3,7 @@ import { iChatMessage } from "features/chat/ui/chat";
 import { User } from "entities/user/model/user.slice";
 import clsx from "clsx";
 import classes from "./chat-message.module.css";
-import UserSvg from "shared/assets/icons/userSvg";
+import UserSvg from "shared/assets/icons/user-svg";
 import dayjs from "dayjs";
 
 interface iChatItem {

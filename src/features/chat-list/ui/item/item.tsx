@@ -5,7 +5,7 @@ import classes from "./item.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentChatId, setCurrentChat } from "entities/auth";
 import clsx from "clsx";
-import UserSvg from "shared/assets/icons/userSvg";
+import UserSvg from "shared/assets/icons/user-svg";
 
 interface iItem {
   user: string;

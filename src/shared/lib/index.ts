@@ -1,3 +1,8 @@
 export { ROUTES } from "./const";
 
-export { saveState, loadState } from "./utils";
+export {
+  saveState,
+  loadState,
+  loadBlobFromLocalStorage,
+  saveBlobToLocalStorage,
+} from "./utils";

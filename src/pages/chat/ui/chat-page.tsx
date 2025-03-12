@@ -7,7 +7,7 @@ import { selectUser } from "entities/auth/model";
 
 import { Header } from "features/header";
 import { Chat } from "features/chat/ui";
-import { Message } from "features/send-message/message";
+import { SendMessage } from "features/send-message/ui/send-message";
 
 interface iChatPage {
   chatId: string;
@@ -39,7 +39,7 @@ export const ChatPage = (props: iChatPage) => {
       >
         <Header name={toName} />
         <Chat {...chat} user={userMe} />
-        <Message userMe={userMe.name} toName={toName} chatId={chatId} />
+        <SendMessage userMe={userMe.name} toName={toName} chatId={chatId} />
       </section>
     );
 };

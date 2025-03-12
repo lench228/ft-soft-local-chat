@@ -139,10 +139,10 @@ export const Chat = ({ messages, user }: iChatList) => {
   return (
     <main
       ref={chatEndRef}
-      className="overflow-y-scroll w-full h-full flex justify-start bg-none p-14"
+      className="overflow-y-scroll w-full h-full flex justify-start bg-none px-14"
     >
       {messages && messages.length ? (
-        <ul className="flex flex-col gap-4">
+        <ul className="flex flex-col gap-4 mt-auto">
           {messages.map((message) => renderMessage(message))}
         </ul>
       ) : (

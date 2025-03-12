@@ -1,8 +1,8 @@
 .container{
-    @apply text-main bg-bg-darker w-full;
+    @apply text-main bg-bg-darker w-full p-3;
 }
 .title{
-    @apply text-2xl font-semibold pl-4;
+    @apply text-xl font-semibold pl-4;
 }
 
 .destination{
